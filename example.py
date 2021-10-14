@@ -24,7 +24,7 @@ def build_experiment(length, probability):
 # We build a laboratory containing multiple experiments.
 # Optionally, we can provide a seed for the rng and 
 # the number of processes (CPUs) to use.
-labo = ql.Laboratory(rng_seed=42, num_processes=4)
+labo = ql.Laboratory(rng_seed=42, num_processes=1)
 for length in [3, 5, 7, 9]:
     for probability in np.linspace(0.1, 1.0, 10):
         labo.add_experiment(build_experiment(length, probability))
