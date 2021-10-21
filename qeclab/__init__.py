@@ -83,7 +83,7 @@ class LinearDecodingExperiment:
     def run_once(self, rng):
         codeword = self.code.random_codeword(rng)
         error = self.noise.sample(len(self.code), rng)
-        guess = self.decoder.decoder(codeword + error)
+        guess = self.decoder.decode(codeword + error)
         if guess is not None:
             return codeword == guess  
         else:
