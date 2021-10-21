@@ -81,10 +81,14 @@ class LinearDecodingExperiment:
         self.noise = noise
 
     def run_once(self, rng):
-        error = self.noise.sample(len(self.code), rng) 
-        guess = self.decoder.decode(error)
-        return guess.is_zero()
-   
+        codeword = self.code.random_codeword(rng)
+        error = self.noise.sample(len(self.code), rng)
+        guess = self.decoder.decoder(codeword + error)
+        if guess is not None:
+            return codeword == guess  
+        else:
+            return False
+
     def run_while(self, condition, rng):
         statistics = Statistics()
         while condition(statistics):
