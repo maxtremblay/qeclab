@@ -54,12 +54,8 @@ class Statistics:
         return self.num_failures / self.num_samples
 
     def variance(self):
-        return (
-            ( self.num_successes * self.success_rate() 
-            + self.num_failures * self.failure_rate()
-            ) / (self.num_experiments - 1)
-        )
-
+        return self.failure_rate() * self.success_rate() / self.num_samples
+        
     def std(self):
         return math.sqrt(self.variance())
 
